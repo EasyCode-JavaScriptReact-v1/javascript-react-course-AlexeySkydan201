@@ -21,3 +21,4 @@ var user = {
 };
 console.log(user);
 console.log(typeof user.phone.work[0]);
+console.log(typeof user.phone.work[1]);
