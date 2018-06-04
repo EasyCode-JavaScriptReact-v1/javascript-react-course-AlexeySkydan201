@@ -19,18 +19,18 @@ console.log(task1);
   // index +++
  */
 let array = [
-  'Он',
-  'был больше ни телом, к которому рано или поздно',
-  'он обнаружил',
-  'не',
-  'Так, когда Будда достиг Просветления',
-  '...',
-  'что больше',
-  'ощущает себя мишенью',
-  'не'
+  'Он',//0
+  'был больше ни телом, к которому рано или поздно',//1
+  'он обнаружил',//2+
+  'не',//3+
+  'Так, когда Будда достиг Просветления',//4+
+  '...',//5
+  'что больше',//6+
+  'ощущает себя мишенью',//7
+  'не'//8+
 ];
-let homeSentence = array[4] + ', ' + array[2] + ', ' + array[6] + 
-' ' + array[8] + array[7] + '.' + '\n' + array[0] + ' ' + array[3] + ' ' + array[1] + ' ' + array[5] ;
+let homeSentence = `${array[4]}, ${array[2]}, ${array[6]} ${array[3]} ${array[7]}. 
+${array[0]} ${array[8]} ${array[1]} ${array[5]}`;
 console.log(homeSentence);
 
 
@@ -52,8 +52,6 @@ console.log(myObj);
     в максимально удобно читаемый для программиста вид
  */
 let frameworks = [4.7, 'Angular', '6Angular', 'React/Redux'];
-let x = 'google\ released ' + 'new version\ ' + frameworks[1] + Math.floor(frameworks[0]) +
-   		'\ But real speed is ' + `${frameworks[frameworks.length - 1]}`;
+let x = `google released new version ${frameworks[1]}${Math.floor(frameworks[0])} But real speed is ${frameworks[frameworks.length - 1]}`;  		
 console.log(x);
-
 //2
