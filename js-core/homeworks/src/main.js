@@ -20,10 +20,11 @@ console.log(someObject);
 в большой регистр
 */
 function toUpperCase(obj) {
-	obj.name = obj.name.toUpperCase();
-	return obj;
+	let newObj = {};
+	newObj.name = obj.name.toUpperCase();
+	return newObj;
 }
-const objectWithName = { name: 'privet kak dela' };
+const objectWithName = { name: 'privet kak dela' ,ee: 'l;j;j'};
 console.log(toUpperCase(objectWithName));
 
 
@@ -103,18 +104,19 @@ console.log(myName);
    Если передаваемое число не кратно 3 или 5, то вернуть указанный параметр
 */
 function fizzBuzz(num) {
-  if(num%3 == 0 || num%5 == 0){
-  	 if(num%3 == 0 && num%5 == 0){
-  		console.log('FizzBuzz');
-  	}else if(num%3 == 0){
-  		console.log('Fizz');
-  	}else if(num%5 == 0){
-  		console.log('Buzz');
-  	}  	
-  }else{
-  	console.log(num);
-  }
+if(num%3 == 0 && num%5 == 0){
+	console.log('FizzBuzz');
+}else{
+	if(num%3 == 0){
+		console.log('Fizz');
+	}else if(num%5 == 0){
+		console.log('Buzz');
+	}else{
+  		console.log(num);
+	}	
 }
+} 
+
 fizzBuzz(1); // 1
 fizzBuzz(2); // 2
 fizzBuzz(3); // 'Fizz'
