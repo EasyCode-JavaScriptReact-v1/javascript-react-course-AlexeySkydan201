@@ -1,4 +1,4 @@
-var user = {
+﻿var user = {
     name:['firstName','secondName','nickName'],
     placeOfWork:{
     	company:null,
@@ -21,4 +21,4 @@ var user = {
 };
 console.log(user);
 console.log(typeof user.phone.work[0]);
-console.log(typeof user.phone.work[1]);
+//1
