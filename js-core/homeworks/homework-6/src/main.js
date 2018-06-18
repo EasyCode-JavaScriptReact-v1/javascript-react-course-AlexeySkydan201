@@ -1,4 +1,4 @@
-let listOfCompanys = [{
+﻿let listOfCompanys = [{
         company: 'ASIMILINE',
         name: {
             last: 'Watkins',
@@ -333,21 +333,16 @@ console.log(countLetterA(user.name + javaScript.html)); // 3
  */
 
 function reverseEachWord(str, bool) {
-    if (bool) {
-        let arr = [];
-        arr = str.split(' ');
-        let tempArr = [];
-        for (let i = 0; i < arr.length; i++) {
-            tempArr = arr[i].split('');
-            tempArr.reverse();
-            arr[i] = tempArr.join('');
-        }
-        return arr.join(' ');
-    } else {
-        return str;
+    let arr = [];
+    arr = str.split(' ');
+    if (bool) { arr.reverse(); }
+    let tempArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        tempArr = arr[i].split('');
+        tempArr.reverse();
+        arr[i] = tempArr.join('');
     }
-
-
+    return arr.join(' ');
 }
 
 console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM'));
