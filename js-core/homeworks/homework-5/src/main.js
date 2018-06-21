@@ -1,4 +1,4 @@
-﻿/*
+/*
  1. Переместите 0 в конец массива, остальные числа должны остаться
  неизменными
  // concat
@@ -114,3 +114,83 @@ function capMe(arr) {
 }
 capMe(mass1);
 capMe(mass2);
+
+
+// @SUPER
+/*
+ 1. Найдите число отсутствующее в заданной последовательности
+ example:
+  [1,3,5,9] => 7 (9-1) / 4 == 2
+  [0,8,16,32] => 24
+  [4, 6, 8, 10] => 2 // число сначала
+  [0,16,24,32] => 8
+ */
+
+function random(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let x = 2;
+        if (true) {
+
+        }
+    }
+
+}
+
+random([1, 3, 5, 9]);
+random([0, 8, 16, 32]);
+random([0, 16, 24, 32]);
+random([4, 6, 8, 10]);
+
+
+/*
+ Задача с собеседований*
+ 2. Напишите функция которая преобразовывает/открывает скобки всех
+ вложенных внутри массивов
+ Необходимо реализовать рекурсивный фызов функции.
+ Функция должна открывать любое количество внутренних массивов
+ example:
+  [[1,2],[3,[4]],5, 10] => [1,2,3,4,5,10]
+  [25,10,[10,[15]]] => [25,10,10,15]
+ */
+var br1 = [
+    [1, 2],
+    [3, [4]], 5, 10
+];
+var br2 = [25, 10, [10, [15]]];
+var br55 = [
+    [5],
+    [2]
+];
+//console.log(br1);
+
+//openBraces(br1);
+
+
+function openBraces(arr) {
+
+    console.log(`уровень `, arr.length);
+    if (arr.length <= 0) {
+        return arr;
+    }
+
+    if (Array.isArray(arr[0])) {
+        let temp = arr.shift();
+        let newArr11 = temp + openBraces(temp);
+    }
+    let newArr11 = arr.shift() + ' ' + openBraces(arr);
+    return newArr11.split(' ');
+
+}
+console.log(openBraces(br2));
+// let arr0 = arr[0];
+// if (Array.isArray(arr0)) {
+//     openBraces(arr0);
+// } else {
+//     newArr.push(arr[0]);
+//     arr.shift();
+//     newArr.concat(openBraces(arr));
+//     console.log(`newArr `, newArr);
+//     return newArr;
+
+// }
+//newArr.push(arr[0]);

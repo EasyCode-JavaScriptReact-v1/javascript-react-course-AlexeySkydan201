@@ -21,4 +21,4 @@
 };
 console.log(user);
 console.log(typeof user.phone.work[0]);
-//1
+console.log(typeof user.phone.work[1]);
