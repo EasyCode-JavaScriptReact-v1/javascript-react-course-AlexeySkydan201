@@ -13,18 +13,18 @@
 */
 
 var user = {
-    mail: 'aa',
+    name: 'rex',
 }
 var admin = {
-    pass: 12,
+    mail: 'aa',
 };
 var guest = {
-    name: 'rex',
-};
-var bd = {
 
 };
-user.__proto__ = guest;
+var bd = {
+    pass: 12,
+};
+guest.__proto__ = user;
 bd.__proto__ = user;
 admin.__proto__ = bd;
 
