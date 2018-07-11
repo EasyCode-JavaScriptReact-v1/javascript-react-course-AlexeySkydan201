@@ -70,21 +70,18 @@ var Worker = function(name, age, pol, height, weight) {
     this.placeOfWork = 'stok';
     this.salary = 6500;
     Human.call(this, name, age, pol, height, weight);
-    this.work4 = () => {
-        console.log(`работать`);
-    }
 }
 var Student = function(name, age, pol, height, weight) {
     this.colledge = 'easy';
     this.stipendia = '300$';
     Human.call(this, name, age, pol, height, weight);
-    this.visionTV = () => {
-        console.log(`смотреть сериалы`);
-    }
 }
 
-Worker.prototype = new Human();
-Student.prototype = new Human();
+Worker.prototype = Object.create(Human.prototype);
+Student.prototype = Object.create(Human.prototype);
+
+Worker.prototype.work4 = () => { console.log(`работать`); }
+Student.prototype.visionTV = () => { console.log(`смотреть сериалы`); }
 
 var alexWorker = new Worker('alex', 38, 'm', 180, 110);
 var vasyaWorker = new Worker('vasya', 47, 'm', 170, 120);
@@ -95,4 +92,4 @@ var annaStudent = new Student('anna', 18, 'w', 190, 62);
 console.log(alexWorker);
 console.log(vasyaWorker);
 console.log(alfredStudent);
-console.log(annaStudent);
+annaStudent.visionTV();
