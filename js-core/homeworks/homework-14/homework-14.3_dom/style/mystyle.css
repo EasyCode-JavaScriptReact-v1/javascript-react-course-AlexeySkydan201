@@ -1,0 +1,53 @@
+* {
+    font-family: 'Comfortaa', cursive;
+}
+
+#h_r {}
+
+#b_y {
+    margin: 50px 100px;
+}
+
+#f_r {}
+
+#sub {
+    background-color: rgb(207, 226, 243);
+    height: 50px;
+    width: 330px;
+    border: 3px solid black;
+    border-radius: 3px;
+    font-size: 19px;
+}
+
+.otstup {
+    margin-left: 30px;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]+label:before {
+    background-color: rgb(207, 226, 243);
+    content: "\2713";
+    color: transparent;
+    display: inline-block;
+    border: 2px solid #000;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 17px;
+    margin: -5px 5px 0 0;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+input[type=checkbox]:checked+label:before {
+    color: #000;
+}
+
+label {
+    font-size: 20px;
+    font-family: Ubuntu;
+}
