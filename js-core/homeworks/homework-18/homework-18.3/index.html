@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home work 18.3</title>
+    <style>
+        section {
+            display: flex;
+            width: 100%;
+            height: 350px;
+            flex: 10;
+        }
+        
+        div {
+            flex: 1;
+            flex-direction: column;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .one {
+            width: 200px;
+            background-color: coral;
+        }
+        
+        .two {
+            width: 200px;
+            background-color: slateblue;
+        }
+        
+        .three {
+            width: 200px;
+            background-color: fuchsia;
+        }
+        
+        .resize {
+            width: 25px;
+            height: 100%;
+            background: black;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="one">
+            <div class="resize"></div>
+        </div>
+        <div class="two">
+            <div class="resize"></div>
+        </div>
+        <div class="three">
+            <div class="resize"></div>
+        </div>
+    </section>
+    <script src="src/main.js"></script>
+</body>
+
+</html>
