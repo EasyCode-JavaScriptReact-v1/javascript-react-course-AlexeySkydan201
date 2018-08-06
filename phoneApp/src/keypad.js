@@ -8,6 +8,19 @@ var arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', "'*'", '0', "'#'"];
 var memory = '';
 var keyOut = (num) => {
     memory += `${num}`;
+    console.log(memory.length)
+    if (memory === '#' || memory === '*') {
+        memory = memory;
+    } else if (memory.length == 1) {
+        memory = '(' + memory;
+    } else if (memory.length == 4) {
+        memory = memory + ')';
+    } else if (memory.length == 8) {
+        memory = memory + '-';
+    } else if (memory.length == 11) {
+        memory = memory + '-';
+    }
+
     number.children[1].textContent = memory;
     console.log(number.children[1].textContent);
 }
