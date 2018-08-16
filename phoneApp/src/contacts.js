@@ -1,5 +1,5 @@
 ﻿class Contacts {
-    constructor(bd) {
+    constructor() {
         this.bd = bd;
         this.lol = document.getElementById('lol');
 
@@ -12,14 +12,17 @@
         </thead>`;
 
     }
-    render() {
-
+    render(bd) {
+        this.bd = bd;
         this.lol.innerHTML += this.header();
-
         this.lol.innerHTML += this.main();
         this.sorts();
         this.search = document.getElementById('search');
-
+        this.search.oninput = function() {
+            let t = this.filter(search.value);
+            this.bd = t;
+            this.sorts();
+        };
     }
     header() {
         return `<header class="header">
@@ -57,11 +60,6 @@
     tbody(bd) {
 
         var result = this.bd.reduce(function(sum, current) {
-            console.log(`r `, current);
-            /*вставит клик в tr и передовать id в Edit contact  this.lol.innerHTML = '';
-            let c = this.pages.editUser;
-            c.render();
-            */
             return sum + `<tr onclick = "app.pages.contacts.goToUser('${current._id}')">
         <td>${current.fullName}</td>
         <td>${current.phone}</td>
@@ -72,10 +70,8 @@
         this.table = document.getElementById('myTable');
         let h = this.thead + `<tbody>${result}</tbody>`;
         this.table.innerHTML = h;
-
     }
     filter(str) {
-
         let dataBaseFilter = [];
         this.bd.forEach((value, i) => {
             for (let key in value) {
@@ -87,7 +83,6 @@
                 }
             }
         });
-        //this.tbody(dataBaseFilter);
         return dataBaseFilter;
     }
     sorts(param) {
@@ -98,14 +93,3 @@
         this.tbody(this.bd);
     }
 }
-// var big = new Contacts(bd);
-// setTimeout(() => {
-//     big.render();
-//     console.log(`qq `, big.search)
-//     big.search.oninput = function() {
-//         let t = big.filter(search.value);
-//         big.bd = t;
-//         big.sorts();
-
-//     };
-// }, 500);

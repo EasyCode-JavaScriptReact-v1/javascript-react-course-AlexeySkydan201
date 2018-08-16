@@ -1,6 +1,6 @@
 ﻿class AddUser {
     constructor(bd) {
-        this.bd = bd;
+        this.bd;
         this.lol = document.getElementById('lol');
 
         this.scroll = document.getElementById('scroll');
@@ -8,12 +8,10 @@
         this.arrAdd = ['add-fullName', 'add-phone', 'add-email', 'add-birthdate', 'add-address', 'add-gender ']
     }
     render() {
+        this.bd = app.bd;
         this.lol.innerHTML += this.header();
         this.lol.innerHTML += this.main();
         this.container1 = document.getElementById('container');
-        console.log(`asd`, this.container1);
-        console.log(`uuuu`, app.pages.addUser.container1.children[1].children[0].children[0].textContent.trim());
-        //app.pages.addUser.serverAddUser(); //
     }
     header() {
         return `<header class="header">
@@ -33,9 +31,6 @@
         </main>`;
     }
     container() {
-        // this.container1.innerHTML += this.editMainInfo();
-        // this.container1.innerHTML += this.scrollHolder();
-
         return this.editMainInfo() + this.scrollHolder();
     }
     editMainInfo() {
@@ -68,7 +63,6 @@
         return `<div class="scroll-holder" ><div class="edit-info">${result}${delet}</div></div>`
     }
     serverAddUser() {
-        console.log(`addiii `, );
         const user = {
             fullName: app.pages.addUser.container1.children[1].children[0].children[0].textContent.trim(),
             phone: app.pages.addUser.container1.children[1].children[0].children[1].textContent.trim(),
@@ -91,31 +85,3 @@
         })
     }
 }
-
-
-// //var add = new AddUser(bd);
-// //add.render();
-// //console.log(`add `, app.pages);
-// var btn = document.querySelector('button');
-// var save1 = document.getElementById('save1');
-// var url = 'http://easycode-js.herokuapp.com/skal/users';
-// var serverAddUser = () => {
-//     var xhr = new XMLHttpRequest();
-//     xhr.addEventListener('readystatechange', () => {
-//         if (xhr.readyState === XMLHttpRequest.DONE) {
-//             console.log(xhr.responseText);
-//         }
-//     });
-//     const user = {
-
-//         fullName: add.container1.children[0].children[1].children[0].textContent.trim(),
-//         email: add.container1.children[0].children[1].children[1].textContent.trim(),
-//         gender: add.container1.children[0].children[1].children[2].textContent.trim(),
-//     };
-//     xhr.open('POST', url, true); //DELETE   POST
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-//     xhr.send(JSON.stringify(user));
-// };
-// // save1.addEventListener('click', () => {
-// //     serverAddUser();
-// // });

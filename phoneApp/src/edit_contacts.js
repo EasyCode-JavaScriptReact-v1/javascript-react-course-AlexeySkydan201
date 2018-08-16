@@ -1,10 +1,5 @@
 ﻿class EditUser {
     constructor(bd) {
-        /*
-        вставить id из бд и отображать usera
-        уменьшить кол-во полей
-        */
-        this.bd = bd;
         this.lol = document.getElementById('lol');
         this.container1 = document.getElementById('container');
         this.scroll = document.getElementById('scroll');
@@ -12,7 +7,8 @@
         this.arrAdd = ['add fullName', 'add  email', 'add birthdate', 'add address', 'add gender ']
     }
     render(id) {
-        console.log(`nnn`, id)
+        this.id = id;
+        this.bd = app.bd;
         this.bd.forEach(element => {
             if (element._id == id) {
                 this.arrAdd[0] = 'name - ' + element.fullName;
@@ -24,6 +20,7 @@
                 }
                 this.arrAdd[3] = 'location - ' + element.address;
                 this.arrAdd[4] = 'gender - ' + element.gender;
+                this.phone = '+38 ' + element.phone.replace(/(\d{3})(\d{2})(\d{2})(\d{3})/, '($1) $2-$3-$4');
             }
 
         });
@@ -66,7 +63,7 @@
         var ph = ` <div class="edit-field">
         <button href="#" class="delete-btn"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
             <span>phone</span>
-            <span>+38 (063) 733 44 55</span>
+            <span>${this.phone}</span>
             </button>
     </div>`;
         var result = this.arrAdd.reduce((sum, current) => {
@@ -77,12 +74,29 @@
         </div>`
         }, '');
         let delet = `<div class="edit-field">
-        <button href="#" class="delete-contact">delete contact</button>
+        
+         <button href="index.html" class="delete-contact" onclick = "app.pages.editUser.deleteContacts()">delete contact</button>
+        
+       
         </div>`
         return `<div class="scroll-holder" ><div class="edit-info">${ph}${result}${delet}</div></div>`
 
     }
+    done() {
+
+    }
+    deleteContacts() {
+        let url = `http://easycode-js.herokuapp.com/skal/users/${this.id}`;
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                console.log(xhr.responseText);
+            }
+        });
+
+        xhr.open('DELETE', url, true); //DELETE   POST
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(user));
+
+    }
 }
-var add = new EditUser(bd);
-//add.render();
-//console.log(add.container1.children[0].children[1].children[0].textContent)

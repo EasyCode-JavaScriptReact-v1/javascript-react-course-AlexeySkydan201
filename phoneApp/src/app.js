@@ -1,21 +1,31 @@
 class App {
     constructor() {
-        this.bd = bd;
+        this.bd;
+        this.url = '';
+        this.log = '';
         this.lol = document.getElementById('lol');
-        this.activPage = 'Contacts';
+        this.activPage = 'Login';
         this.pages = {
-            contacts: new Contacts(this.bd),
-            keypad: new Keypad(this.bd),
-            user: new User(this.bd),
-            editUser: new EditUser(this.bd),
-            addUser: new AddUser(this.bd),
+            login: new Login(),
+            contacts: new Contacts(),
+            keypad: new Keypad(),
+            user: new User(),
+            editUser: new EditUser(),
+            addUser: new AddUser(),
         }
     }
     render(id) {
         console.log(`qq `, this.activPage)
+        if (this.activPage == 'Login') {
+            let c = this.pages.login;
+            c.entrance();
+
+        }
         if (this.activPage == 'Contacts') {
             this.lol.innerHTML = '';
             let c = this.pages.contacts;
+            console.log(`bdddd`, this.bd);
+
             setTimeout(() => {
                 c.render(this.bd);
                 c.search.oninput = function() {
@@ -23,7 +33,7 @@ class App {
                     c.bd = t;
                     c.sorts();
                 };
-            }, 500);
+            }, 2000);
         }
         if (this.activPage == 'User') {
             this.lol.innerHTML = '';

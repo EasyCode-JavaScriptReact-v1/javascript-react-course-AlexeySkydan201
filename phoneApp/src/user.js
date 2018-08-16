@@ -1,12 +1,13 @@
 ﻿class User {
     constructor() {
         this.lol = document.getElementById('lol');
-        this.bd = bd;
+
         this.id = '';
         this.phone = '';
 
     }
     render(id) {
+        this.bd = app.bd;
         this.id = id;
         this.bd.forEach(element => {
             if (element._id == id) {
@@ -78,5 +79,3 @@
     }
 
 }
-var user = new User();
-//user.render();

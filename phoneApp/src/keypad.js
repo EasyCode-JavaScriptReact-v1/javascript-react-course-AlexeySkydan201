@@ -1,19 +1,17 @@
 ﻿class Keypad {
     constructor() {
         this.lol = document.getElementById('lol');
-        this.arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', "'*'", '0', "'#'"];
         this.strNumber = `<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         <span class="numbers" id = "monitor"></span>
-        <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>`;
-        this.buttonCall = `<button class="key"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>`;
-        this.memory = '';
+        <span class="glyphicon glyphicon-circle-arrow-left " aria-hidden="true" onclick = "app.pages.keypad.deletKey()"></span>`;
+        this.numberPhone = '';
     }
     render() {
         this.lol.innerHTML += this.header();
         this.lol.innerHTML += this.main();
         this.number = document.getElementById('number');
         this.monitor = document.getElementById('monitor');
-        console.log(this.monitor)
+
     }
     header() {
         return `<header class="header">
@@ -30,70 +28,68 @@
             </div>
             <div class="keypad-holder" id="key">
             ${this.strKey()}
-            ${this.buttonCall}
+            
             </div>
     </main>`
     }
     strKey() {
-        return this.arr.reduce(function(sum, current) {
-            return sum + `<button class="key" onclick = "app.pages.keypad.keyOut(${current})">${current}</button>`;
-        }, '');
+
+        return `
+        <button class="key" onclick="app.pages.keypad.keyOut(1)">1</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(2)">2</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(3)">3</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(4)">4</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(5)">5</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(6)">6</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(7)">7</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(8)">8</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(9)">9</button>
+        <button class="key" onclick="app.pages.keypad.keyOut('*')">*</button>
+        <button class="key" onclick="app.pages.keypad.keyOut(0)">0</button>
+        <button class="key" onclick="app.pages.keypad.keyOut('#')">#</button>
+        <button class="key"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+        `
     }
     keyOut(num) {
-        this.memory += `${num}`;
-        if (this.memory === '#' || this.memory === '*') {
-            this.memory = this.memory;
-        } else if (this.memory.length == 1) {
-            this.memory = '(' + this.memory;
-        } else if (this.memory.length == 4) {
-            this.memory = this.memory + ')';
-        } else if (this.memory.length == 8) {
-            this.memory = this.memory + '-';
-        } else if (this.memory.length == 11) {
-            this.memory = this.memory + '-';
+        let regex = /[#*]/;
+        this.numberPhone += `${num}`;
+
+        if (regex.test(this.numberPhone)) {
+            this.monitor.textContent = this.numberPhone;
+        } else if (this.numberPhone.length == 1) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{1})/, '($1');
+        } else if (this.numberPhone.length == 3) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})/g, '($1) ');
+        } else if (this.numberPhone.length == 5) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})(.{1})/g, '($1) $2');
+        } else if (this.numberPhone.length == 7) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})(.{3})(.{1})/g, '($1) $2-$3');
+        } else if (this.numberPhone.length == 9) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})(.{3})(.{2})(.{1})/g, '($1) $2-$3-$4');
+        } else if (this.numberPhone.length > 10) {
+            this.numberPhone = this.numberPhone.substr(0, 10);
+        } else {
+            this.monitor.textContent += `${num}`;
         }
-
-        this.number.children[1].textContent = this.memory;
     }
-
-
+    deletKey() {
+        let length1 = this.numberPhone.length;
+        this.numberPhone = this.numberPhone.substr(0, length1 - 1);
+        let length2 = this.monitor.textContent.length;
+        if (this.numberPhone.length == 1) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{1})/, '($1');
+        } else if (this.numberPhone.length == 2) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{2})/g, '($1 ');
+        } else if (this.numberPhone.length == 3) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})/g, '($1) ');
+        } else if (this.numberPhone.length == 5) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})(.{1})/g, '($1) $2');
+        } else if (this.numberPhone.length == 7) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})(.{3})(.{1})/g, '($1) $2-$3');
+        } else if (this.numberPhone.length == 9) {
+            this.monitor.textContent = this.numberPhone.replace(/(.{3})(.{3})(.{2})(.{1})/g, '($1) $2-$3-$4');
+        } else {
+            this.monitor.textContent = this.monitor.textContent.substr(0, length2 - 1);
+        }
+    }
 }
-var key = new Keypad();
-//key.render();
-
-// var number = document.getElementById('number');
-// var strNumber = `<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-// <span class="numbers" >(050)5005050</span>
-// <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>`;
-// number.innerHTML += strNumber;
-
-//var arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', "'*'", '0', "'#'"];
-// var memory = '';
-// var keyOut = (num) => {
-//     memory += `${num}`;
-//     //console.log(memory.length)
-//     if (memory === '#' || memory === '*') {
-//         memory = memory;
-//     } else if (memory.length == 1) {
-//         memory = '(' + memory;
-//     } else if (memory.length == 4) {
-//         memory = memory + ')';
-//     } else if (memory.length == 8) {
-//         memory = memory + '-';
-//     } else if (memory.length == 11) {
-//         memory = memory + '-';
-//     }
-
-//     number.children[1].textContent = memory;
-//     //console.log(number.children[1].textContent);
-// }
-//var key = document.getElementById('key');
-// var strKey = arr.reduce(function(sum, current) {
-
-//     return sum + `<button class="key" onclick = "keyOut(${current})">${current}</button>`;
-// }, '');
-// var buttonCall = `<button class="key"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>`
-// var t = strKey + buttonCall;
-
-// key.innerHTML += t;
-//console.log(number)
